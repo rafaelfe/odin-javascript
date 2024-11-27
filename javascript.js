@@ -1,6 +1,7 @@
 const log = console.log;
+let roundNum = 1;
 
-// This function defines a random number from 0 to 2 and returns a choice related to it
+// Define a random number from 0 to 2 and returns a play choice related to it
 function getComputerChoice() {
     let num = Math.floor(Math.random()*3);
     
@@ -27,7 +28,8 @@ function getHumanChoice() {
 
     // Do: prompt the player to write a choice and assign the variable "inputChoice"
     do  {
-        let inputChoice = prompt("Write your choice: rock, paper or scissors");
+        let inputChoice = prompt(`Round ${roundNum} of 5
+Write your choice: rock, paper or scissors`);
         // change content of variable "inputChoice" into variable "choice"
         choice = inputChoice.toLowerCase();
 
@@ -105,6 +107,7 @@ function playGame() {
         }
     }
 
+    // Run a loop of 5 rounds
     for (let i = 1; i < 6; i++) {
 
         // Display human and computer choices
@@ -122,7 +125,26 @@ Computer choice: ${computerSelection}`)
         
         //Display round score
         log(`Player score:   ${humanScore}
-Computer score: ${computerScore}`)      
+Computer score: ${computerScore}`)
+        
+        // Iterate round number
+        roundNum++;
+    }
+
+    if (humanScore > computerScore) {
+        log(`
+Congratulations, you won!
+Final score: Player ${humanScore} vs ${computerScore} Computer`)
+    }
+    else if (humanScore < computerScore) {
+        log(`
+Unfortunately you lost.
+Final score: Player ${humanScore} vs ${computerScore} Computer`)
+    }
+    else {
+        log(`
+The game ended in a tie!
+Final score: Player ${humanScore} vs ${computerScore} Computer`)
     }
 }
 
